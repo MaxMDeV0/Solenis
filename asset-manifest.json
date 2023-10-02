@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/Solenis/static/css/main.fd637a5f.css",
+    "main.js": "/Solenis/static/js/main.d078c1ba.js",
+    "static/js/787.28cb0dcd.chunk.js": "/Solenis/static/js/787.28cb0dcd.chunk.js",
+    "static/media/products.jpg": "/Solenis/static/media/products.3751d7e1612f9ceacd97.jpg",
+    "static/media/jobsbanner.jpg": "/Solenis/static/media/jobsbanner.7841e128a7c515906969.jpg",
+    "static/media/instal2.jpg": "/Solenis/static/media/instal2.e6ce007cf46314547ae8.jpg",
+    "static/media/recrutment.webp": "/Solenis/static/media/recrutment.26e6f2b487f6b79a3f96.webp",
+    "static/media/instal1.jpg": "/Solenis/static/media/instal1.c7320d3d1e1d21021fca.jpg",
+    "static/media/instalbanner.jpg": "/Solenis/static/media/instalbanner.76b6d63a779aaf79855a.jpg",
+    "static/media/happy.webp": "/Solenis/static/media/happy.b942bf17fbebf0d504ad.webp",
+    "static/media/instal3.jpg": "/Solenis/static/media/instal3.3c1cdd2855070e8faaf1.jpg",
+    "static/media/instal4.jpg": "/Solenis/static/media/instal4.b56b3f55df5dd6b266f2.jpg",
+    "static/media/dpe.jpg": "/Solenis/static/media/dpe.578fd00b2f82d22b2dc6.jpg",
+    "static/media/logoTypo.svg": "/Solenis/static/media/logoTypo.5f1ca23678747ca151004adda073dca6.svg",
+    "static/media/gaz.webp": "/Solenis/static/media/gaz.c9042ffefa21a58e168d.webp",
+    "static/media/PAC.webp": "/Solenis/static/media/PAC.80dc7875d6afcae21b86.webp",
+    "static/media/Pac_hybride.webp": "/Solenis/static/media/Pac_hybride.b78d98eac99fbae80aa1.webp",
+    "static/media/clim.webp": "/Solenis/static/media/clim.da5343e1683cce742c61.webp",
+    "static/media/logo.svg": "/Solenis/static/media/logo.d4824225ad9ebcc15c26f204f92459bb.svg",
+    "static/media/quote2.svg": "/Solenis/static/media/quote2.42b9f31d9e8eba246516033076e85dc4.svg",
+    "static/media/typoBlanc.svg": "/Solenis/static/media/typoBlanc.1bd67047b6d8768b9a7b00c88e212706.svg",
+    "static/media/quote.svg": "/Solenis/static/media/quote.a488c2fcf06819057ab50baf274bcec8.svg",
+    "static/media/logo2.svg": "/Solenis/static/media/logo2.fb5f485f8865bc71984b9aa708b0edd9.svg",
+    "index.html": "/Solenis/index.html",
+    "main.fd637a5f.css.map": "/Solenis/static/css/main.fd637a5f.css.map",
+    "main.d078c1ba.js.map": "/Solenis/static/js/main.d078c1ba.js.map",
+    "787.28cb0dcd.chunk.js.map": "/Solenis/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fd637a5f.css",
+    "static/js/main.d078c1ba.js"
+  ]
+}
