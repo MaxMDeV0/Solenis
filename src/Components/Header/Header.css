@@ -1,0 +1,254 @@
+header{
+    height: 80px;
+    top: 0px;
+    width: 100vw;
+    box-sizing: border-box;
+    font-weight: 600;
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    background-color: white;
+    transition: top .3s;
+    position: fixed;
+    --main-color: #FE5716;
+    box-shadow: 0 0 20px #0000001a;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    color: #001A70;
+
+
+}
+header .btn{
+    display: none;
+    align-self: center;
+    width: 180px;
+    height: 40px;
+    background-color: #FE5716;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 25px;
+    padding: 0 15px;
+}
+header .btn:hover{
+    transform: scale(110%);
+    transition: .3s;
+}
+
+header .btnmobile{
+    align-self: center;
+    justify-self: center;
+    width: 180px;
+    height: 40px;
+    background-color: #FE5716;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 25px;
+    padding: 0 15px;
+}
+
+.logo{
+    display: none;
+    grid-template-columns: 30% auto;
+
+
+}
+.logomobile{
+    margin: 0 15px;
+    align-self: center;
+    justify-self: center;
+}
+.icone{
+    width: 35px;
+    justify-self: center;
+    align-self: center;
+}
+.typo{
+    transform: translateY(-7px);
+    height: 50px;
+    justify-self: flex-start;
+
+    
+}
+
+.burgerLine{
+    width: 32px;
+    height: 3px;
+    background-color: var(--main-color);
+    transition: .3s;
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: var(--main-color);
+    margin-right: 15px;
+    align-self: flex-end;
+}
+.burgerIcon{
+    display: flex;
+    flex-direction: column;
+    height: 30px;
+    justify-content: space-around;
+}
+.modalBackground{
+    position: inherit;
+    height: calc(100vh - 80px);
+    width: 100vw;
+    top:80px;
+    background-color: var(--main-color);
+    z-index: inherit;
+
+}
+.modalContainer{
+    display: grid;
+    height: 100%;
+}
+.menu_mobile{
+    list-style-type: none;
+    padding: 0;
+    color: white;
+
+}
+.menu_mobile li{
+    text-align: start;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+.navcontainer{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar{
+    list-style-type: ' ';
+    display: none;
+    padding: 0;
+    margin: 0;
+    margin-right: 15px;
+    height: 50px;
+}
+.navbar li{
+    color: #001A70;
+
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+.navbar li:hover{
+    color: #F55D1C;
+
+}
+.navbar li::before{
+    content: '';
+    position: absolute;
+    height: 10px;
+    width: 0%;
+    bottom:-5px;
+    left: -5px;
+    transition: all .3s;
+
+}
+.navbar li:hover::before{
+    content: '';
+    background-color: var(--main-color);
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    bottom:-5px;
+    left: -5px;
+    transition: all .3s;
+
+}
+@media  only screen and (min-width:600px){
+    header{
+        height: 110px;
+        grid-template-columns: 180px 1fr auto;
+
+    }
+    .btnmobile{
+        justify-self: center;
+    }
+
+}
+
+@media  only screen and (min-width:768px){
+    .logomobile{
+        display: none;
+
+    }
+    .logo{
+        display: grid;
+    }
+    .btnmobile{
+        display: none;
+    }
+    header .container{
+        flex: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+    
+    }
+    .navbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .burgerIcon{
+        visibility: hidden;
+        display: none;
+    }
+    .burgerLine{
+        margin: 0;
+    }
+    header{
+        grid-template-columns: 220px 1fr 220px;
+        justify-content: flex-start;
+
+
+    }
+    header .btn{
+        display: block;
+    }
+    .typo{
+        height: 60px;
+    }
+    .icone{
+        width: 40px;
+    }
+}
+
+@media  only screen and (min-width:992px){
+    header{
+        padding-left: 9vw;
+        grid-template-columns: 220px 3fr 2fr;
+
+    }
+    .navbar li{
+        padding: 0 15px;
+    }
+    header .btn{
+        width: 250px;
+        height: 55px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+@media  only screen and (min-width:1200px){
+    
+}
+@media  only screen and (min-width:1400px){
+    .navbar{
+        max-width: 65vw;
+    }
+    .navbar li{
+        padding: 0 25px;
+    }
+
+}

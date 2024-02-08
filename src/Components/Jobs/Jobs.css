@@ -1,0 +1,138 @@
+.jobs .titre{
+    background-image: url('../../images/recrutment.webp');
+    background-position: 70% 70%;
+
+}
+.jobcard{
+    width: 100%;
+    border: 2px solid;
+    border-radius: 8px;
+    margin-top: 30px;
+    padding: 30px 15px;
+    box-sizing: border-box;
+    background-color: transparent;
+    text-align: left;
+    color: #001A70;
+}
+.joblist{
+    padding-top: 10px;
+    margin-bottom: 30px;
+    max-width: 450px;
+
+}
+.jobs{
+    color: #001A70;
+
+}
+article:has( .joblist){
+    max-width: 450px;
+}
+.jobs .title{
+    font-size: 1.125rem !important;
+    font-weight: 600;
+}
+.jobcard:hover >.title{
+    text-decoration: underline;
+}
+.jobs span{
+    font-size: .875rem;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 3px 8px;
+    margin: 5px 3px;
+    display: inline-block;
+
+}
+.jobcontent{
+    display: none;
+    border: 2px solid;
+    width: calc(100% - 30px);
+    margin-top: 113px;
+    margin-left: 30px;
+    top: 140px;
+    border-radius: 8px;
+    max-width: 600px;
+    position: sticky;
+    max-height: 75vh;
+    margin-bottom: 120px;
+    overflow-y: auto;
+    padding: 30px 15px;
+    box-sizing: border-box;
+    text-align: justify;
+}
+.jobs .returnbtn{
+    margin-right: 0;
+}
+.jobcontent2{
+    margin-top: 20px;
+    border: 2px solid;
+    top: 140px;
+    border-radius: 8px;
+    max-width: 600px;
+    position: sticky;
+    margin-bottom: 30px;
+    padding: 30px 15px;
+    box-sizing: border-box;
+    text-align: justify;
+}
+
+.jobcontent article .div{
+    white-space: pre-wrap;
+}
+.jobcontent article{
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+@media screen and (min-height:750px) {
+    .jobcontent{
+        max-height: 80vh;
+    }
+}
+@media  only screen and (min-width:768px){
+    .jobs .pagecontent{
+        position: relative;
+        display: grid;
+        grid-template-columns: 325px 1fr;
+    }
+    .jobcard{
+        width: 325px;
+    }
+    .jobcontent{
+        display: block;
+    }
+    .jobs article{
+        margin-bottom: 90px;
+    }
+}
+@media  only screen and (min-width:992px){
+    .jobcard{
+        width: 400px;
+    }
+    .jobs .pagecontent{
+        grid-template-columns: 400px 1fr;
+
+    }
+
+
+}
+
+@media  only screen and (min-width:1000px){
+    .jobcard{
+        width: 400px;
+    }
+
+}
+@media  only screen and (min-width:1200px){
+    .jobcard{
+        width: 450px;
+    }
+    .jobs .pagecontent{
+        grid-template-columns: 450px 1fr;
+
+    }
+
+
+
+}
+    
+    

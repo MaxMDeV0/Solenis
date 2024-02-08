@@ -1,0 +1,172 @@
+.home .titre{
+  background-image: url('../../images/instalbanner.jpg');
+  background-position: 70% 70%;
+
+}
+
+.blue{
+    background-color: #E9F1F9;
+    color: white;
+}
+.grey{
+    background-color: rgb( 248,247,249 );
+}
+
+.fixe{
+    position: fixed;
+    bottom: 5vh;
+}
+.banner{
+    padding: 30px;
+}
+
+.advice{
+    list-style: none;
+    margin: 30px;
+    position: relative;
+    
+}
+.advice_list{
+    padding: 0;
+}
+.advice p {
+    padding-top: 0;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+  }
+
+  
+.home{
+  display: block;
+}
+.pagecontent{
+  width: 100%;
+  padding: 0 30px;
+  box-sizing: border-box;
+  margin-top: 40px;
+  
+}
+.home h3{
+  color: #FE5716;
+  font-weight: 400;
+  position: relative;
+  padding: 0;
+  margin-top: -40px;
+}
+.homelist{
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.itemlist{
+  margin-top: 30px;
+  color: #001A70;
+
+}
+.itemlist button{
+  color: #001A70;
+
+}
+.homelist button{
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  height: 60px;
+  font-size: 1rem;
+  position: relative;
+}
+.itemcontent{
+  padding: 0 6px;
+  opacity: 0;
+  max-height: 0;
+  /* transition: all .3s ; */
+  border-color: #777777;
+  padding-bottom: 10px;
+
+
+}
+[aria-expanded='true'] + .itemcontent{
+  opacity: 1;
+  max-height: 300px;
+  /* transition: all .3s ; */
+
+}
+.item{
+  width: 100%;
+  border-bottom: 1px solid;
+  max-width: 700px;
+
+}
+.homelist button .btnarrow{
+  color: #001A70;
+  position: absolute;
+  right:25px;
+  top:20px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+[aria-expanded='true'] + .homelist button .btnarrow{
+  height:auto;
+  transition: height .3s ease-in-out;
+  color: red;
+
+}
+.homelist button .btnarrow{
+  position: absolute;
+  right: 20px;
+  transition: .3s;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  border-radius:15px;
+  font-size: 20px;
+}
+.home button[aria-expanded='true'] .btnarrow{
+  transform: rotate(90deg);
+  transition: .3s;
+}
+
+
+@media  only screen and (min-width:600px){
+  .pagecontent{
+    padding: 0 45px;
+  }
+
+}
+
+@media  only screen and (min-width:768px){
+}
+
+@media  only screen and (min-width:992px){
+  .pagecontent{
+  padding-left: 10%;  
+  margin-top: 90px;
+}
+  article{
+    margin-bottom: 90px;
+  }
+  .homelist button{
+    font-size: 20px;
+  }
+  .itemcontent{
+    font-size: 18px;
+  }
+}
+
+@media  only screen and (min-width:1200px){
+  .pagecontent{
+    padding-left: 15%;
+  }
+
+}

@@ -1,0 +1,112 @@
+.customers .titre{
+    background-image: url('../../images/happy.webp');
+    background-position: 50% 20%;
+}
+
+.instal{
+    margin-top: 30px;
+    padding: 30px;
+}
+.instal img{
+    aspect-ratio: 1.5/1;
+    object-fit: cover;
+}
+.comment{
+    background-color: #DF3603;
+    padding: 30px;
+    margin-top: 30px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+}
+.feedback{
+    background-color: #FFF0EB;
+    padding: 30px;
+    position: relative;
+    list-style-type: none;
+    flex: 0 0 calc(100% - 120px);
+    padding-top: 70px;
+    margin: 30px;
+}
+.feedbacklist{
+    padding: 0;
+    display: flex;
+    width: 90vw;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+.quote{
+    background-color: #FE5716;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.quote2{
+    background-color: #FE5716;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.feedback p{
+    font-size: 1rem !important;
+    color: black;
+    width: 100%;
+    margin: 0;
+}
+.feedback strong{
+    color: black;
+}
+
+#prevBtn, #nextBtn {
+    color: #1057C8 !important;
+    font-size: 2rem;
+    background-color: white;
+    border: none;
+}
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    padding-bottom: 30px;
+}
+
+@media  only screen and (min-width:600px){
+    .feedbacklist{
+        max-width: 650px;
+    }
+
+}
+
+@media  only screen and (min-width:768px){
+    .instal{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 30px;
+        column-gap: 30px;
+    }
+
+}
+
+@media  only screen and (min-width:992px){
+
+    .instal{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+}
+
+@media  only screen and (min-width:1200px){
+
+}

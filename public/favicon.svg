@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 352.51 356.03">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Dégradé_sans_nom_76);
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#Dégradé_sans_nom_79);
+      }
+
+      .cls-3 {
+        fill: url(#Dégradé_sans_nom_68);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_68" data-name="Dégradé sans nom 68" x1="0" y1="168.53" x2="160.61" y2="168.53" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e63c02" stop-opacity=".9"/>
+      <stop offset=".47" stop-color="#e63e02" stop-opacity=".9"/>
+      <stop offset=".64" stop-color="#e74505" stop-opacity=".9"/>
+      <stop offset=".76" stop-color="#ea5209" stop-opacity=".9"/>
+      <stop offset=".86" stop-color="#ee650f" stop-opacity=".9"/>
+      <stop offset=".94" stop-color="#f27d17" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#f7931e" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_76" data-name="Dégradé sans nom 76" x1="99.08" y1="92.05" x2="352.51" y2="92.05" gradientUnits="userSpaceOnUse">
+      <stop offset=".42" stop-color="#00012b" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#2e3192" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_79" data-name="Dégradé sans nom 79" x1="80.96" y1="255.69" x2="342.23" y2="255.69" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#012268"/>
+      <stop offset=".23" stop-color="#00266c" stop-opacity=".99"/>
+      <stop offset=".45" stop-color="#00337a" stop-opacity=".98"/>
+      <stop offset=".66" stop-color="#004992" stop-opacity=".95"/>
+      <stop offset=".87" stop-color="#0068b3" stop-opacity=".91"/>
+      <stop offset=".92" stop-color="#0071bc" stop-opacity=".9"/>
+    </linearGradient>
+  </defs>
+  <g id="Logo_principal" data-name="Logo principal">
+    <g>
+      <path class="cls-3" d="m88.99,25.39s-47.09,65.19-9.88,122.1c15.26,23.34,71.5,40.28,79.91,83.5,6.28,32.32-6.28,55.66-34.12,70.93C58.88,338.12,13.12,265.55,3.7,214.83-21.34,80.13,88.99,25.39,88.99,25.39Z"/>
+      <path class="cls-1" d="m352.16,184.1s-29.9-74.65-97.9-73.64c-27.89.42-72.27,38.88-113.28,22.88-30.67-11.97-43.68-35.08-41.69-66.76C103.99-8.56,189.78-8.42,237.68,10.73c127.21,50.87,114.48,173.37,114.48,173.37Z"/>
+      <path class="cls-2" d="m80.96,326.02s79.44,12.48,113.35-46.47c13.91-24.18,3.55-81.99,38.28-109.05,25.98-20.23,52.48-19.59,78.69-1.69,62.17,42.48,18.18,116.13-22.79,147.5-108.77,83.29-207.53,9.7-207.53,9.7Z"/>
+    </g>
+  </g>
+</svg>
