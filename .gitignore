@@ -12,7 +12,7 @@
 
 # production
 /build
-/src/images
+/src/images/*
 
 
 # misc
