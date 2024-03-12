@@ -48,6 +48,16 @@
     margin-bottom: 25px;
 
 }
+.adminformimg{
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.adminformimg input{
+    height: 30px;
+}
+
+
 .backlink{
     margin-bottom: 25px;
     position: absolute;

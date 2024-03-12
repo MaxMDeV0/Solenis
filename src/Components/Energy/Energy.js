@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect} from "react";
 import "./Energy.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { __src } from "../../config";
 
 export default function Energy (){
     const [name, setName] = useState('');
@@ -16,12 +17,51 @@ export default function Energy (){
     const [facture, setFacture] = useState('');
     const [formpage, setFormpage] = useState(1);
     const [errors, setErrors] = useState({});
+    const [title, setTitle] = useState([])
+    const [main, setMain] = useState([])
+    const [steps, setSteps] = useState([])
+    const [aides, setAides] = useState([])
+
     useEffect(()=>{
         console.log(lastname)
     },[lastname])
     useEffect(() => {
         document.title = 'Solenis | Audit énergétique';
     }, []);
+
+    useEffect(()=>{
+        fetch(__src + `/json/audit.json`,{
+            headers:{
+                'Cache-Control' : 'no-cache, no-store, must-revalidate',
+                'Pragma' : 'no-cache',
+                'Expire' : "0",
+            }
+        })
+        .then(function(response){
+            response.json().then(function(json){
+                for(const object of json.complexe){
+  
+                    if(object.category=="Contenu principale"){
+                        setMain(object.content)
+                    }
+                    else if(object.category=="Titre de la page"){
+                        setTitle(object.content[0].contenu)
+                    }
+                    else if(object.category=="Étapes de l'audit"){
+                        
+                        setSteps(object.content)
+                    }
+                    else if(object.category=="Aides"){
+                        setAides(object.content)
+                    }
+                }
+              })
+        })
+  
+  
+    },[])
+  
+  
 
     const validateForm1 = ()=>{
         let errors = {}
@@ -157,43 +197,39 @@ export default function Energy (){
             <div className="energy container">
                 <div className="titre">
                     <div className="dark" >
-                        <h1>Audit énergétique</h1>
+                        <h1>{title}</h1>
                     </div>
                 </div>
                 <div className="pagecontent">
                     <div className="main">
-                        <article>
-                            <h2>Évaluez, identifiez, améliorez</h2>
-                            <p>L'audit énergétique permet de détecter les faiblesses énergétiques de votre habitation et de les corriger. Améliorer la performance énergétique de votre maison, c'est <strong>réduire vos factures d'énergie</strong>, limiter votre empreinte carbone, valoriser votre propriété et augmenter votre confort.
-                            </p>
-                        </article>
-                        <article>
-                            <h2>Les étapes de l'audit énergétique</h2>
-                            <p className="one">
-                                <br/>
-                                <span className="number">1<br/></span><span style={{fontSize:'24px', fontWeight:'600'}}>Recueil d'informations</span><br/><br/>
-                                <strong>Un technicien se déplace chez vous</strong> pour recueillir les éléments nécessaires à l'étude de votre logement. Vos factures d'énergies, la taille de votre logement,l'état de votre isolation, système de chauffage, etc...
-                                <span className="downarrow"><br/><br/>&#x2193;</span>
-                            </p>
-                            <p className="one">
-                                <span className="number">2<br/></span>Analyse des données<br/><br/>
-                                Grâce à son expertise technique et à ses logiciels, le technicien identifie les pertes d'énergie de votre habitation. Il vous informe des <strong>subventions et des plans de financement</strong> dont vous pouvez bénéficier.
-                                <span className="downarrow"><br/><br/>&#x2193;</span>
+                        {main.map((item)=> {return(
+                            <article>
+                                <h2>{item.titre}</h2>
+                                <p>{item.contenu}</p>
+                            </article>
+                        )})}
 
-                            </p>
-                            <p className="one" id="last">
-                                <span className="number">3<br/></span>Élaboration d'une solution<br/><br/>
-                                <strong>Créez</strong>, de concert avec notre technicien <strong>le projet de rénovation</strong> qui sied à vos envies et aux besoins énergetiques de votre maison. 
+                        <article>
+                            <h2>{steps.length>0 && steps[0].contenu}</h2>
+                            {steps.map((item, index)=> {if(index>0)return(
+                                <p className="one">
+                                    <br/>
+                                    <span className="number">{index}<br/></span><span style={{fontSize:'24px', fontWeight:'600'}}>{item.titre}</span><br/><br/>
+                                    {item.contenu}
+                                    <span className="downarrow" style={index==steps.length-1? {display:"none"}:null}><br/><br/>&#x2193;</span>
+                                </p>
+                            )})}
 
-                            </p>
                         </article>
 
                     </div>
                     <article className="form">
-                        <h2>Simulez vos aides</h2>
-                        <p className="primrenov"><strong>MaPrimeRénov'</strong>, éco-financement, des questions sur les montants auxquels vous avez droit et les conditions d'éligibilité ?
-                    Remplissez ce formulaire pour recevoir votre simulation et <strong>bénéficier d'un audit énergétique gratuit.</strong></p>
-
+                        {aides.map((item)=>{return(
+                            <>
+                            <h2>{item.titre}</h2>
+                            <p className="primrenov">{item.contenu}</p>
+                            </>
+                        )})}
                         <form className="carousel" ref={carousel}   onSubmit={submithandler} action='https://solenis-enr.fr/request.php' id="energyform" method="post">
                         <div className="input_container">
                             <div className="twoinput">

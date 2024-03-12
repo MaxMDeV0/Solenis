@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faFileContract,faGraduationCap, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { setJobs } from '../store/counterSlice'
+import { __src } from "../../config";
 
 function Jobs(){
     useEffect(() => {
@@ -19,6 +20,7 @@ function Jobs(){
     const [selectedJob, setSelectedJob] =useState(JSON.parse(sessionStorage.getItem("job")|| '{}'))
     const dispatch = useDispatch()
     const [job, setJob] = useState({})
+    const [title, setTitle] = useState([])
     useEffect(()=>{
         //sessionStorage.setItem("job" , JSON.stringify({}))
         console.log(selectedJob)
@@ -35,7 +37,7 @@ function Jobs(){
     },[finalData])
     useEffect(()=>{
 
-        fetch(`https://solenis-enr.fr/json/carriere.json`,{
+        fetch(__src+`/json/carriere.json`,{
             headers:{
                 'Cache-Control' : 'no-cache, no-store, must-revalidate',
                 'Pragma' : 'no-cache',
@@ -48,7 +50,13 @@ function Jobs(){
                 let prevState = []
 
                 for(const object of json.complexe){
-                    prevState.push(object.content[0])
+                    if(object.category !='Titre de la page'){
+                        prevState.push(object.content[0])
+
+                    }
+                    else {
+                        setTitle(object.content[0].contenu)
+                    }
                 }
                 setJobsData(prevState)
                 setFinalData(prevState)
@@ -60,12 +68,11 @@ function Jobs(){
 
 
     },[])
-    const solenisdescription = "Le Groupe CPM France, spécialisé dans la force de vente supplétive depuis plus de 45 ans, intervient principalement dans les domaines de l'agroalimentaire, des nouvelles technologies et de la beauté/santé pour des clients à forte notoriété.Nous disposons de 5 entités (CPM France, Retail Safari, Daytona, Hyperactiv, Omniservices) afin de proposer des solutions adaptées aux enjeux de nos clients.Nos futurs collaborateurs intégreront une entreprise à taille humaine et seront challengés au quotidien.Davantage d'informations sur notre entreprise : https://www.fr.cpm-int.com/'"
     return (
             <div className="jobs container">
                                         <div className="titre">
                             <div className="dark" >
-                                <h1>Solenis recrute et si c'était vous ?</h1>
+                                <h1>{title}</h1>
                             </div>
                         </div>
 
@@ -73,7 +80,7 @@ function Jobs(){
                     <Switch>
                         <Route exact path='/carriere'>
                             <article>
-                                <h2>Nos offres d'emploi</h2>
+                                
                                 <div className="joblist">
                                     <JobList items={finalData} setSelectedJob={setSelectedJob} jobstate={[job, setJob]}/>
                                 </div>

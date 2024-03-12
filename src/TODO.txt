@@ -1,0 +1,13 @@
+Done
+
+
+espace paragraphe accueil;
+titre accueil client;
+page client onglet install photo;
+
+
+TODO :
+
+modal formulaire + redirection bug
+modif page produits;
+modif page job;

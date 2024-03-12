@@ -1,13 +1,11 @@
-import React, { useState, useEffect, createElement, Fragment } from "react";
+import React, { useState, useEffect, createElement } from "react";
 import './Products.css';
 import { useSelector, useDispatch } from 'react-redux'
-import { setProduct, setPage } from '../store/counterSlice'
-import axios from 'axios'
+import { setProduct,  } from '../store/counterSlice'
 import { Switch , Route, useHistory, useParams } from 'react-router-dom'
-import ReactDom from 'react-dom'
-import useImage from "../useImage/useImage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { __src } from "../../config";
 
 
 function Products(){
@@ -23,7 +21,7 @@ function Products(){
     const [products, setProducts] = useState([])
     const [title, setTitle]=useState([])
     useEffect(()=>{
-        fetch(`https://solenis-enr.fr/json/produits.json`,{
+        fetch(__src+ `/json/produits.json`,{
             headers:{
                 'Cache-Control' : 'no-cache, no-store, must-revalidate',
                 'Pragma' : 'no-cache',
@@ -51,64 +49,6 @@ function Products(){
 
     },[])
 
-    // const products = [{
-    //     titre : 'Daikin Altherma 3 H MT W',
-    //     source : 'Pac_hybride.webp',
-    //     description : 'Pompe à chaleur air/eau moyenne température conçue pour améliorer votre système de chauffage existant',
-    //     infos: {
-    //         'Fonctionnalités' : 'chauffage et rafraîchissement',
-    //         'Dimensions (hxwxd)' : '840x440x390 mm',
-    //         'Niveau pression sonore (unité extérieure)': "41 dBA - 47.1 dBA",
-    //         'Label énergétique chauffage (kW)': "jusqu’à A+++",
-    //         'Température eau chaude sanitaire' : "jusqu'à un maximum de 65°C",
-    //         'Fonctionneent': "jusqu'à un minimum de -28 °C",
-
-    //     },
-    // }]
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //       try {
-    //         const response = await axios.get('https://raw.githubusercontent.com/MaxMDeV0/Solenis_Data/main/products.csv');
-  
-    //         const data = response.data;
-    //         if(data.length>0){
-    //             const row = data.split('\r\n')
-    //             const rowtitle = row[0].split(';')
-    //             let jobslist = []
-    //             row.forEach((element,index) => {
-    //                 if(index!=0 && element.length!=0){
-    //                     let job = {}
-    //                     let jobcontent = element.split(';')
-    //                     rowtitle.forEach((title,index)=>{
-    //                         job[title] = jobcontent[index]
-    //                     }) 
-    //                     jobslist.push(job)
-    //                 }
-    //             });
-    //             console.log(jobslist)
-    //             setProducts(jobslist)
-    //         }
-    
-    //         console.log(data)
-  
-    //       } catch (error) {
-    //         console.error('Erreur lors de la récupération du fichier CSV :', error);
-    //       }
-    //       //   .then(response => response.json())
-    //       //     .then(data => console.log(data))
-          
-    //     };
-    //     if(products.length == 0){
-    //         fetchData()
-    //         console.log('fetching')
-    //     }
-        
-    //   }, []);
-  
-    const [s, setS] = useState(false)
-
-    let {id} = useParams()
-    console.log(useParams())
     return (
 
         <div className="products container">
@@ -121,7 +61,7 @@ function Products(){
                 <article>
                     
                     <Switch>
-                        <Route exact path='/produits'><h2>Nos Solutions</h2><div className="products_list"><ProductsList  items={products}/></div></Route>
+                        <Route exact path='/produits'><div className="products_list"><ProductsList  items={products}/></div></Route>
                         <Route path='/produits/:id'><ProductInfo /></Route>
                     </Switch>
 
@@ -163,6 +103,8 @@ function ProductItem ({item}){
 
     )
 }
+
+
 function ProductInfo (){
     let {page ,id} = useParams()
     console.log(id)

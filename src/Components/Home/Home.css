@@ -92,7 +92,7 @@ body {
 }
 [aria-expanded='true'] + .itemcontent{
   opacity: 1;
-  max-height: 300px;
+  max-height: 3000px;
   /* transition: all .3s ; */
 
 }

@@ -1,6 +1,7 @@
 import './Donnes.css'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import { __src } from "../../config";
 
 
 export default function Donnees (){
@@ -16,7 +17,7 @@ export default function Donnees (){
     const [mention, setMention]=useState([]);
     const [fetchedData, setFetchedData]=useState([])
     useEffect(()=>{
-        fetch(`https://solenis-enr.fr/json/politiques-de-confidentialité-des-données.json`,{
+        fetch(__src +`/json/politiques-de-confidentialité-des-données.json`,{
             headers:{
                 'Cache-Control' : 'no-cache, no-store, must-revalidate',
                 'Pragma' : 'no-cache',

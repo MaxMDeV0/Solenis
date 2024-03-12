@@ -4,6 +4,7 @@ import logo from '../../images/logo.svg'
 import logo2 from '../../images/logo2.svg'
 import typo from '../../images/typoshort.svg'
 import typo2 from '../../images/logoTypo.svg'
+import { __src } from "../../config";
 
 import { NavLink, useHistory } from "react-router-dom";
 
@@ -22,13 +23,38 @@ function Header(){
         textDecoration:'none'
 
     }
+
+    const [titles, setTitles] = useState([])
+
     useEffect(() => {
         document.body.classList.add("overflow-hidden");
         return () => {
           document.body.classList.remove("overflow-hidden");
         };
-      }, []);
+    }, []);
 
+    useEffect(()=>{
+        fetch(__src + `/json/general.json`,{
+            headers:{
+                'Cache-Control' : 'no-cache, no-store, must-revalidate',
+                'Pragma' : 'no-cache',
+                'Expire' : "0",
+            }
+        })
+        .then(function(response){
+            response.json().then(function(json){
+                for(const object of json.complexe){
+                    if(object.category=='Navigation'){
+                        setTitles(object.content)
+
+                    }
+                }
+              })
+        })
+  
+  
+    },[])
+  
     const history = useHistory()
     return (
         <header style={!modalOpen ?{backgroundColor:  'white'}:{backgroundColor:'#FE5716',overflow:'hidden'}} id='header'>
@@ -45,10 +71,10 @@ function Header(){
 
                 <ul className="navbar">
 
-                    <li><NavLink style={navStyle} to='/accueil'>Accueil</NavLink></li>
-                    <li><NavLink style={navStyle} to='/produits'>Nos Solutions</NavLink></li>
-                    <li><NavLink style={navStyle} to='/carriere'>Carrière</NavLink></li>
-                    <li><NavLink style={navStyle} to='/avis-clients'>Avis Clients</NavLink></li>
+                    <li><NavLink style={navStyle} to='/accueil'>{titles.length>0 && titles[0].contenu}</NavLink></li>
+                    <li><NavLink style={navStyle} to='/produits'>{titles.length>0 && titles[1].contenu}</NavLink></li>
+                    <li><NavLink style={navStyle} to='/carriere'>{titles.length>0 && titles[2].contenu}</NavLink></li>
+                    <li><NavLink style={navStyle} to='/avis-clients'>{titles.length>0 && titles[3].contenu}</NavLink></li>
   
                 </ul>
                 <div className="burgerIcon" onClick={()=>SetModalOpen(!modalOpen)}>
@@ -58,16 +84,16 @@ function Header(){
 
                 </div>
             </div>
-            <button className="btn" onClick={()=>{history.push('/audit-energetique')}}>Simuler mes aides</button>
+            <button className="btn" onClick={()=>{history.push('/audit-energetique')}}>{titles.length>0 && titles[4].contenu}</button>
 
         {modalOpen && 
             <div className="modalBackground">
                 <div className="modalContainer">
                     <ul className="menu_mobile">
-                        <li><NavLink onClick={()=>SetModalOpen(false)} style={mobileNavStyle} to='/accueil'>ACCUEIL</NavLink></li>
-                        <li><NavLink onClick={()=>SetModalOpen(false)} style={mobileNavStyle} to='/produits'>CONSULTER NOS PRODUITS</NavLink></li>
-                        <li><NavLink onClick={()=>SetModalOpen(false)} style={mobileNavStyle} to='/carriere'>REJOIGNEZ-NOUS</NavLink></li>
-                        <li><NavLink onClick={()=>SetModalOpen(false)} style={mobileNavStyle} to='/avis-clients'>ILS PARLENT DE NOUS</NavLink></li>
+                        <li><NavLink onClick={()=>SetModalOpen(false)} style={mobileNavStyle} to='/accueil'>{titles.length>0 && titles[0].contenu}</NavLink></li>
+                        <li><NavLink onClick={()=>SetModalOpen(false)} style={mobileNavStyle} to='/produits'>{titles.length>0 && titles[1].contenu}</NavLink></li>
+                        <li><NavLink onClick={()=>SetModalOpen(false)} style={mobileNavStyle} to='/carriere'>{titles.length>0 && titles[2].contenu}</NavLink></li>
+                        <li><NavLink onClick={()=>SetModalOpen(false)} style={mobileNavStyle} to='/avis-clients'>{titles.length>0 && titles[3].contenu}</NavLink></li>
             
                     </ul>
                 </div>

@@ -1,6 +1,7 @@
 import './Mention.css'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import { __src } from "../../config";
 
 
 export default function Mention (){
@@ -16,7 +17,7 @@ export default function Mention (){
     const [mention, setMention]=useState([]);
     const [fetchedData, setFetchedData]=useState([])
     useEffect(()=>{
-        fetch(`https://solenis-enr.fr/json/mentions-legales.json`,{
+        fetch(__src + `/json/mentions-legales.json`,{
             headers:{
                 'Cache-Control' : 'no-cache, no-store, must-revalidate',
                 'Pragma' : 'no-cache',

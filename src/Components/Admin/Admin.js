@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setAdmin, setCategory } from '../store/counterSlice'
 import Cookies from 'js-cookie'
 import logo from '../../../src/images/logoTypo.svg'
+import { __src, __url__, __dev__ } from '../../config'
 
 function Admin (){
     useEffect(() => {
@@ -14,7 +15,7 @@ function Admin (){
       }, []);
     const [cookie, setCookie] = useState('')
     useEffect(()=>{
-        if(cookie!=='' && cookie!=undefined){
+        if((cookie!=='' && cookie!=undefined) || __dev__ ){
             setLogin(true)
         }
         setCookie(Cookies.get('Auth'))
@@ -41,12 +42,12 @@ function Admin (){
                     {!login && <Login cookie={[cookie, setCookie]}/>}
                     {login && <div className="menu">
                         
-                        {/* <Link to='/admin/general' className='menu-item'>Général</Link> */}
+                        <Link to='/admin/general' className='menu-item'>Général</Link>
                         <Link to='/admin/accueil' className='menu-item'>Accueil</Link>
                         <Link to='/admin/produits' className='menu-item'>Produits</Link>
                         <Link to='/admin/carriere' className='menu-item'>Carriere</Link>
                         <Link to='/admin/avis' className='menu-item'>Avis Clients</Link>
-                        {/* <Link to='/admin/audit' className='menu-item'>Audit</Link> */}
+                        <Link to='/admin/audit' className='menu-item'>Audit</Link>
                         <Link to='/admin/mentions-legales' className='menu-item'>Mention</Link>
                         <Link to='/admin/politiques-de-confidentialité-des-données' className='menu-item'>Politiques</Link>
 
@@ -71,9 +72,8 @@ function Edit(){
     const dispatch = useDispatch()
     console.log()
     useEffect(()=>{
-        // fetch(`https://solenis-enr.fr/json/${page}.json`,{
+        fetch( __src + `/json/${page}.json`,{
 
-        fetch(`http://localhost:5500/src/json/${page}.json`,{
             headers:{
                 'Cache-Control' : 'no-cache, no-store, must-revalidate',
                 'Pragma' : 'no-cache',
@@ -98,8 +98,6 @@ function Edit(){
 
 
     },[])
-    const url = `http://solenis.localhost/index.php`
-    // const url = `https://solenis-enr.fr/admin.php`
 
     const filename = `${page}.json`
     const path = `/admin/${page}`
@@ -119,9 +117,10 @@ function Edit(){
         }
     }
     const [newJob, setNewJob] = useState('')
+    console.log(__url__)
     return(
         <>
-        <form className='editcontainer' action={url} method='post' encType='multipart/form-data'>
+        <form className='editcontainer' action={__url__} method='post' encType='multipart/form-data'>
                     <input type='text' value={filename} name='filename' style={{display:'none'}}/>
 
                     <Link to='/admin' className='backlink'>Menu &#8594;</Link>
@@ -133,7 +132,7 @@ function Edit(){
                     {data.length!==0 && !Array.isArray(data) && data.complexe.map((item)=>{
                         return <EditList item={item}/>
                     })}
-                    <input type="submit" value='Enregistrer les modifications' className='submit' style={(page=="mentions-legales" ||page=="politiques-de-confidentialité-des-données")?null:{display:'none'}}/>
+                    <input type="submit" value='Enregistrer les modifications' className='submit' style={(page=="mentions-legales" || page=="politiques-de-confidentialité-des-données" )?null:{display:'none'}}/>
 
         </form>
         <button onClick={clickhandler} style={(page=="mentions-legales" ||page=="politiques-de-confidentialité-des-données")?null:{display:'none'}}>Nouveau Contenu</button>
@@ -165,8 +164,6 @@ function EditListIem({item}){
             return [...prevState, {titre:'', contenu:''}]
         })
     }
-    const actionUrl = 'http://solenis.localhost/index.php'
-    // const actionUrl = 'https://solenis-enr.fr/admin.php'
 
     const handleSubmit = (e)=>{
         e.preventDefault()
@@ -183,7 +180,7 @@ function EditListIem({item}){
         // Convertir l'objet en chaîne JSON
     }
     console.log(data.length!==0 && Array.isArray(data) && page!='carriere' && page!='produits' || category=="Titre de la page")
-    return <><form className='editcontainer'  action={actionUrl} method='post' encType='multipart/form-data'>
+    return <><form className='editcontainer'  action={__url__} method='post' encType='multipart/form-data'>
                 <input type='text' value={filename} name='filename' style={{display:'none'}}/>
                 <input type='text' value={category} name='category' style={{display:'none'}}/>
 
@@ -191,9 +188,16 @@ function EditListIem({item}){
         <Link to={url} className='backlink2'>{page} &#8594;</Link>
         <Link to={url} className='backlink3'>{category} &#8594;</Link>
 
-        {data.length!==0 && Array.isArray(data) && ((page!='carriere' && page!='produits') || category=="Titre de la page") && data.map((element)=>{
+        {data.length!==0 && Array.isArray(data) && ((page!='carriere' && page!='produits' && category != "Installations Client" && category != "Banniere") || category=="Titre de la page") && data.map((element)=>{
             return <EditItem item={element}/>
         })}
+        {category=='Installations Client' &&
+            <InstalForm data={data} /> 
+        }
+        {category=='Banniere' &&
+            <BanniereForm data={data} /> 
+        }
+
         {data.length!==0 && Array.isArray(data) && page=='carriere' && category!="Titre de la page" && data.map((element)=>{
             return <JobForm item={element}/>
         })}
@@ -201,13 +205,72 @@ function EditListIem({item}){
             return <ProductForm item={element}/>
         })}
 
-        <input type="submit" value='Enregistrer les modifications' className='submit'/>
-        <input type="submit" value='Supprimer la fiche' className='delete' style={(category!='Titre de la page' && page=='produits'||page=='carriere' )?null:{display:'none'}} onClick={deletehandler}/>
+        <input type="submit" value='Enregistrer les modifications' className='submit' style={(category != 'Installations Client' &&  category != 'Banniere')?null:{display:'none'}}/>
+
+        <input type="submit" value='Supprimer la fiche' className='delete' style={(category!='Titre de la page' && (page=='produits'||page=='carriere') )?null:{display:'none'}} onClick={deletehandler}/>
 
     </form>
-    <button onClick={clickhandler} style={(page=='carriere' || page=='produits' || category=='Titre de la page' || category=='Navigation')?{display:"none"}:null}>Nouveau Contenu</button>
+    <button onClick={clickhandler} style={(page=='carriere' || page=='produits' || category=='Titre de la page' || category=='Navigation' || category=='Installations Client' || category == "Banniere")?{display:"none"}:null}>Nouveau Contenu</button>
 </>
     
+}
+function BanniereForm ({banner}) {
+    const submitHandler = (e) => {
+        e.preventDefault()
+        const form = document.getElementsByTagName('form')
+        console.log(form[0])
+        if(window.confirm("Cette action peut entraîner la suppression d'image ! Souhaitez-vous continuer ?") ) {
+            form[0].submit()
+        }
+    }
+
+    return (
+        <>
+        <img  src={banner} width="100%"/>
+        <input type='file' style={{border:'none'}} name='banner' accept='.webp' />
+        <input type="submit" value='Enregistrer les modifications' className='delete' onClick={submitHandler}/>
+
+        </>
+
+    )
+}
+function InstalForm ({data}) {
+    const [images, setImages] = useState(data)
+    const [img, setImg] = useState('')
+    const changeHandler = (e)=>{
+
+        const state = data.filter((element,index)=>{
+            const checkbox = document.getElementById(`checkbox-${index}`)
+            if(!checkbox.checked) {
+                return element
+            }
+        })
+        setImages(state)
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        const form = document.getElementsByTagName('form')
+        console.log(form[0])
+        if(window.confirm("Cette action peut entraîner la suppression d'images ! Souhaitez-vous continuer ?") ) {
+            form[0].submit()
+        }
+    }
+    return <>
+        <input value={JSON.stringify(images)} name='Installations_Client' style={{display:'none'}}/>
+        {data.length!==0 && Array.isArray(data) && data.map((element, index)=>
+            <div className='adminformimg'>
+                <img src={`https://solenis-enr.fr/media/install/${element}`} width='80%'/>
+                <input type='checkbox' onClick={changeHandler} id={`checkbox-${index}`} active/>
+            </div>
+        
+        )}
+        <input type='file' style={{border:'none'}} name='files[]' accept='.webp' multiple='multiple'/>
+
+        <input type="submit" value='Enregistrer les modifications' className='delete' onClick={submitHandler}/>
+
+    
+    </>
 }
 function EditItem({item}){
     let {category} = useParams()
@@ -219,6 +282,16 @@ function EditItem({item}){
         if(e.key ==='Enter' && !e.shiftKey){
             e.preventDefault()
         }
+
+    }
+    if(title=="Titre du module"){
+        return (
+            <div className='adminform'>
+                <label>Titre du module</label>
+                <input type='text' value={content} onChange={(e)=>{setContent(e.target.value)}} name={title} onKeyDown={onKeyDown}/>
+
+            </div>
+        )
 
     }
     if(category=='Titre de la page'){
@@ -238,6 +311,15 @@ function EditItem({item}){
 
         </div>
 
+        )
+    }
+    else if(category=="Installations Client") {
+        
+        return (
+            <div className='adminformimg'>
+                <img src={item} width='80%'/>
+                <input type='checkbox' />
+            </div>
         )
     }
     return(
@@ -374,7 +456,7 @@ function Login(props){
     const [cookie, setCookie] = props.cookie
     const getResponse= async (e)=>{
 e.preventDefault()
-        fetch('https://solenis-enr.fr/login.php',{
+        fetch(__src + '/login.php',{
             method: 'POST',
             mode: 'cors',
             credentials: 'same-origin',

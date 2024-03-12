@@ -7,12 +7,14 @@ import instal4 from '../../images/instal4.jpg'
 import quote from '../../images/quote.svg'
 import quote2 from '../../images/quote2.svg'
 import axios from 'axios'
+import { __src } from "../../config";
 
 function Customers(){
     
     const [data, setData] = useState([])
     const [title, setTitle]=useState([])
-
+    const [instal, setInstal] = useState([])
+    const [mainContent, setMainContent] = useState([])
     useEffect(() => {
         document.title = 'Solenis | Avis Clients';
       }, []);
@@ -20,7 +22,7 @@ function Customers(){
 
   
     useEffect(()=>{
-        fetch(`https://solenis-enr.fr/json/avis.json`,{
+        fetch( __src +`/json/avis.json`,{
             headers:{
                 'Cache-Control' : 'no-cache, no-store, must-revalidate',
                 'Pragma' : 'no-cache',
@@ -36,6 +38,13 @@ function Customers(){
                     }
                     else if(object.category=="Titre de la page"){
                         setTitle(object.content[0].contenu)
+                    }
+                    else if(object.category == "Contenu principal") {
+                        setMainContent(object.content)
+                    }
+                    else if (object.category=="Installations Client") {
+                        setInstal(object.content)
+                        console.log(object.content)
                     }
                 }
                 console.log(json)
@@ -74,12 +83,17 @@ function Customers(){
 
 
 
-                <h2>Nos installations !</h2>
+                {mainContent.length>0 && mainContent.map((item)=> {return(
+                        <article>
+                            <h2>{item.titre}</h2>
+                            <p>{item.contenu}</p>
+                        </article>
+                    )})}
+
                 <div className="instal">
-                    <img src={instal1} width='100%' />
-                    <img src={instal2} width='100%' />
-                    <img src={instal3} width='100%' />
-                    <img src={instal4} width='100%' />
+                    {instal.length > 0 && instal.map((element)=>
+                        <img src={`./media/install/${element}`} width='100%' />
+                    )}
                 </div>
 
         </div>

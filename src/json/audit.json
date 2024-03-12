@@ -1,8 +1,11 @@
 {
     "complexe":[
-        {"category":"main","content":[]},
-        {"category":"advice","content":[]},
-        {"category":"partenaire","content":[]}
-
+        {"category":"Titre de la page","content":[{"titre":"e","contenu":"Audit énérgétique"}]},
+        {"category":"Contenu principale","content":[{"titre":"Évaluez, identifiez, améliorez","contenu":"L'audit énergétique permet de détecter les faiblesses énergétiques de votre habitation et de les corriger. Améliorer la performance énergétique de votre maison, c'est réduire vos factures d'énergie, limiter votre empreinte carbone, valoriser votre propriété et augmenter votre confort."}]},
+        {"category":"Étapes de l'audit","content":[{"titre":"Titre du module","contenu":"Les étapes de l'audit énergétique"},{"titre":"Recueil d'informations","contenu":"Un technicien se déplace chez vous pour recueillir les éléments nécessaires à l'étude de votre logement. Vos factures d'énergies, la taille de votre logement,l'état de votre isolation, système de chauffage, etc..."},
+            {"titre":"Analyse des données","contenu":"Grâce à son expertise technique et à ses logiciels, le technicien identifie les pertes d'énergie de votre habitation. Il vous informe des subventions et des plans de financement dont vous pouvez bénéficier."},
+            {"titre":"Élaboration d'une solution","contenu":"Créez, de concert avec notre technicien le projet de rénovation qui sied à vos envies et aux besoins énergetiques de votre maison."}]},
+        {"category":"Aides","content":[{"titre":"Simulez vos aides","contenu":"MaPrimeRénov', éco-financement, des questions sur les montants auxquels vous avez droit et les conditions d'éligibilité ? Remplissez ce formulaire pour recevoir votre simulation et bénéficier d'un audit énergétique gratuit."}]}
+        
     ]
 }

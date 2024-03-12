@@ -3,6 +3,7 @@ import './Home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
+import { __src } from "../../config";
 
 function Home(){
     useEffect(() => {
@@ -43,7 +44,7 @@ function Home(){
     const [partner, setPartner]=useState([])
 
     useEffect(()=>{
-      fetch(`https://solenis-enr.fr/json/accueil.json`,{
+      fetch(__src +`/json/accueil.json`,{
           headers:{
               'Cache-Control' : 'no-cache, no-store, must-revalidate',
               'Pragma' : 'no-cache',
@@ -97,13 +98,12 @@ function Home(){
                         <MyList items={adviceData}/>
                     </article>
 
-                    {/* <article>
-                        <h2 >Nos partenaires</h2>
-                        <p style={{textAlign:'center'}}>Ils nous font confiance !</p>
-
-                    </article> 
-
- */}
+                    {partner.length>0 && partner.map((item)=> {return(
+                        <article>
+                            <h2>{item.titre}</h2>
+                            <p>{item.contenu}</p>
+                        </article>
+                    )})}
 
                     </div>
     
@@ -116,34 +116,29 @@ function MyList({items}){
         const bool = JSON.parse(e.target.getAttribute('aria-expanded'))
         e.target.setAttribute('aria-expanded', !bool )
     }
-    const sibingclickhandler = (e)=>{
-        const bool = JSON.parse(e.target.parentNode.children[0].getAttribute('aria-expanded'))
-        e.target.parentNode.children[0].setAttribute('aria-expanded', !bool)
-    }
     return (
         <div className="itemlist">
-            {items.map((item, index)=> <div className="item">
+            {items.map((item)=> <div className="item">
                 <button aria-expanded='false' onClick={clickhandler}>{item.titre}<div className='btnarrow'><FontAwesomeIcon icon={faPlay} size='xs'/></div></button>
-                <div className="itemcontent" onClick={sibingclickhandler}>{item.contenu}</div>
+                <Item item={item.contenu}/>
             </div>)}
         </div>
     )
 }
 
-function Item({props, index}){
+function Item({item}){
+    const sibingclickhandler = (e)=>{
+        const bool = JSON.parse(e.target.parentNode.children[0].getAttribute('aria-expanded'))
+        e.target.parentNode.children[0].setAttribute('aria-expanded', !bool)
+    }
+
+    const paraList = item.split('\r\n')
+    console.log(paraList)
     return (
-        <li className="advice" >
-            <input type="checkbox" name={'detail-' + index} id={'detail-' + index}  />
-            <details open>
-                <summary>
-                  <label for={'detail-' + index}>{props.title}</label>
-                </summary>
-                <div class="content">
-                  <p>{props.content}</p>
-                </div>
-            </details>        
-        </li>
-    )
+        <div className="itemcontent" onClick={sibingclickhandler}>{paraList.length > 0 && paraList.map((element)=>
+            <div>{element}<br/></div>
+        )}</div>
+        )
 }
 
 export default Home;

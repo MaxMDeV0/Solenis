@@ -225,8 +225,8 @@ header .btnmobile{
 
 @media  only screen and (min-width:992px){
     header{
-        padding-left: 9vw;
-        grid-template-columns: 220px 3fr 2fr;
+        padding-left: 2vw;
+        grid-template-columns: 290px 3fr 2fr;
 
     }
     .navbar li{
@@ -238,6 +238,13 @@ header .btnmobile{
         font-size: 20px;
         font-weight: 600;
     }
+    .typo{
+        height: 80px;
+    }
+    .icone{
+        width: 50px;
+    }
+
 }
 
 @media  only screen and (min-width:1200px){
